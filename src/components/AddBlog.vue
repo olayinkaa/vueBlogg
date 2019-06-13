@@ -5,18 +5,27 @@
                 <h3>Add A New Blog Post</h3>
                 <form>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Title</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                        <label for="exampleInputEmail1">TITLE</label>
+                        <input type="text" v-model="title" class="form-control" id="post_title" aria-describedby="emailHelp" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Post</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="exampleFormControlTextarea1">CONTENT</label>
+                        <textarea class="form-control" v-model="content" id="post_content" rows="3"></textarea>
                     </div>
                   
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
+                <!--  -->
+                   <div>
+                        blog-title: {{title}}
+                    </div>
+                    <div>
+                         <p>Blog-content: {{content}}</p>
+                    </div>
             </div>
+         
         </div>
+     
       
     </div>
 </template>
@@ -27,6 +36,8 @@
         data(){
             return {
 
+                title:'',
+                content:''
             }
         }
     }
