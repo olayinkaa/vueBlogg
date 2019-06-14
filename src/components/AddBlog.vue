@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-2">
-                <h3>Add A New Blog Post</h3>
+                <h3 v-if="!submitted">Add A New Blog Post</h3>
                 <form v-if="!submitted" >
                     <div class="form-group">
                         <label for="exampleInputEmail1">TITLE</label>
@@ -39,13 +39,16 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">AUTHOR</label>
                         <select class="form-control" v-model="blog.author">
-                            <option  v-for="author in authors">{{author}}</option>
+                            <option  v-for="author in authors" :key="author.id">{{author}}</option>
                         </select>
                     </div>
 
 
                     <button type="submit" @click.prevent="post" class="btn btn-primary btn-block">Submit</button>
                 </form>
+                <div>
+                    <h3 v-if="submitted">Thanks for add a post</h3>
+                </div>
                 <!--  -->
                    <div>
                         blog-title: {{blog.title}}
@@ -56,7 +59,7 @@
                     <div>
                     Blog categories
                          <ul>
-                            <li v-for="category in blog.categories">{{category}}</li>
+                            <li v-for="category in blog.categories" :key="category.id">{{category}}</li>
                          </ul>
                     </div>
                     <div>
@@ -90,10 +93,11 @@
         methods: {
             post:function(){
 
-                this.$http.post('',{
+                this.$http.post('https://jsonplaceholder.typicode.com/posts',{
 
                     title: this.blog.title,
                     body: this.blog.content,
+                    userId:1
                 }).then(data=>{
 
                     console.log(data);
