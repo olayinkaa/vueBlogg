@@ -7,8 +7,8 @@
                 <div class="card mt-3">
                     <div class="card-body">
                         <h5 class="card-title" v-italics>{{blog.title|capitalize}}</h5>
-                        <p class="card-text" v-red>{{blog.body | snippet}}</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <p class="card-text" >{{blog.body | snippet}}</p>
+                        <router-link :to="'/blog/'+blog.id" class="btn btn-primary">Read More</router-link>
                     </div>
                 </div>
             </div>
