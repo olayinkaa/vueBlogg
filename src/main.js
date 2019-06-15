@@ -3,13 +3,22 @@ import App from './App.vue'
 import jQuery from 'jquery'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import vueResource from 'vue-resource'
+import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+
+import Routes from './route'
 
 global.jQuery = jQuery
 global .$ = jQuery
 
-Vue.use(vueResource)
+Vue.use(VueResource)
+Vue.use(VueRouter)
 
+const router = new VueRouter({
+
+    routes:Routes,
+    mode:'history'
+})
 // custom directives
 Vue.directive('rainbow',{
 
@@ -51,4 +60,5 @@ Vue.filter('capitalize',(value)=>{
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
+  router:router
 }).$mount('#app')
