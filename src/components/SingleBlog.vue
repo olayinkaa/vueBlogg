@@ -6,7 +6,7 @@
                         <div class="card mt-3">
                             <div class="card-body">
                                 <h5 class="card-title" v-italics>{{blog.title}}</h5>
-                                <p class="card-text" >{{blog.body}}</p>
+                                <p class="card-text" >{{blog.content}}</p>
                             </div>
                     </div>
                 </div>
@@ -23,15 +23,19 @@
                 return {
 
                     id:this.$route.params.id,
-                    blog:[]
+                    blog:{}
                 }
             },
             created(){
 
-                this.$http.get('https://jsonplaceholder.typicode.com/posts/'+this.id)
+                this.$http.get('https://vue-blogg.firebaseio.com/posts/'+this.id+'.json')
+
                 .then(data=>{
 
-                    this.blog = data.body
+                    return data.json()
+                }).then(data=>{
+
+                    this.blog = data;
                 })
             }
 

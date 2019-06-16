@@ -7,7 +7,7 @@
                 <div class="card mt-3">
                     <div class="card-body">
                         <h5 class="card-title" v-italics>{{blog.title|capitalize}}</h5>
-                        <p class="card-text" >{{blog.body | snippet}}</p>
+                        <p class="card-text" >{{blog.content | snippet}}</p>
                         <router-link :to="'/blog/'+blog.id" class="btn btn-primary">Read More</router-link>
                     </div>
                 </div>
@@ -49,9 +49,20 @@ import directiveMixin from '../mixin/directiveMixin'
                 }
         },
         created: function() {
-                this.$http.get('https://jsonplaceholder.typicode.com/posts').then(data=>{
+                this.$http.get('https://vue-blogg.firebaseio.com/posts.json').then(data=>{
 
-                    this.blogs = data.body.slice(0,10)
+                        return data.json()
+                    // this.blogs = data.body.slice(0,10)
+                }).then(data=>{
+
+                        var blogArray = [];
+                        for(let key in data)
+                        {
+                            data[key].id = key;
+                            blogArray.push(data[key]);
+                        }
+
+                        this.blogs = blogArray;
                 })
 
         },

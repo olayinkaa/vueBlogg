@@ -93,7 +93,16 @@
         methods: {
             post:function(){
 
-                this.$http.post('https://jsonplaceholder.typicode.com/posts',{
+                this.$http.post('https://vue-blogg.firebaseio.com/posts.json',this.blog).then(data=>{
+
+                    console.log(data);
+                    this.submitted = true
+                })
+            }
+            /*
+            post:function(){
+
+                this.$http.post('https://vue-blogg.firebaseio.com/posts.json',{
 
                     title: this.blog.title,
                     body: this.blog.content,
@@ -104,6 +113,8 @@
                     this.submitted = true
                 })
             }
+            */
+
         }
     }
 </script>
